@@ -1,0 +1,37 @@
+
+article.article-login {
+
+}
+
+article.article-login h1 {
+  text-align: center;
+}
+
+article.article-login .logo {
+  display: block;
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+article.article-login form.form {
+ 
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 85%;
+  margin: 6rem auto 5rem auto;
+  
+
+}
+
+
+
+article.article-login button.button.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-unthemed.mat-mdc-button-base {
+  display: block;
+  margin: auto auto 2rem auto ;
+}
+
+mat-error + mat-error {
+  display: none;
+}

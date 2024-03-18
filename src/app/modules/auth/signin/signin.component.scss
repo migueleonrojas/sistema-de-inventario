@@ -1,0 +1,38 @@
+
+article.article-signin {
+
+}
+
+article.article-signin h1 {
+  text-align: center;
+}
+
+article.article-signin .logo {
+  display: block;
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+article.article-signin form.form {
+ 
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+
+
+
+article.article-signin button.button.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-unthemed.mat-mdc-button-base {
+  display: block;
+  margin: auto auto 2rem auto ;
+}
+
+
+mat-error + mat-error {
+  display: none;
+}

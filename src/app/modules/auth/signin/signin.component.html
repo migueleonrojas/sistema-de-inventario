@@ -1,0 +1,50 @@
+<article class="article-signin">
+  <img class="logo" src="../../../../assets/images/fresh-fish-logo_600x.jpg" alt="Logo de Fresh Fish">
+  
+  <h1>Registrese en Fresh Fish Inventario</h1>
+
+  <form class="form" [formGroup]="signinForm" (ngSubmit)="signin()">
+    <mat-form-field>
+      <mat-label>Nombre y Apellido</mat-label>
+      <input matInput formControlName="fullnameControl">
+      <mat-error *ngIf="signinForm.controls['fullnameControl'].getError('minlength')">El nombre y apellido debe tener más de 5 caracteres</mat-error>
+      <mat-error *ngIf="signinForm.controls['fullnameControl'].getError('maxlength')">El nombre y apellido debe tener menos de 50 caracteres</mat-error>
+      <mat-error *ngIf="signinForm.controls['fullnameControl'].getError('fullNameValid')">Debe ingresar un nombre y apellido valido. Ejm: Luis Guzman</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Nombre de Usuario</mat-label>
+      <input matInput formControlName="usernameControl">
+      <mat-error *ngIf="signinForm.controls['usernameControl'].getError('minlength')">El nombre de usuario debe tener más de 3 caracteres</mat-error>
+      <mat-error *ngIf="signinForm.controls['usernameControl'].getError('maxlength')">El nombre de usuario debe tener menos de 15 caracteres</mat-error>
+      <mat-error *ngIf="signinForm.controls['usernameControl'].getError('usernameValid')">Debe ingresar un nombre de usuario valido. Ejm: lguzman</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Cédula de Identidad</mat-label>
+      <input matInput formControlName="idControl">
+      <mat-error *ngIf="signinForm.controls['idControl'].getError('idValid')">Debe ingresar una cedula valida. Ejm: V-023947635</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Correo corporativo</mat-label>
+      <input matInput formControlName="emailControl">
+      <mat-error *ngIf="signinForm.controls['emailControl'].getError('emailValid')">Debe ingresar un correo valido. Ejm: lguzman@freshfishdelivery.com</mat-error>
+      <mat-error *ngIf="signinForm.controls['emailControl'].getError('maxlength')">El correo debe tener menos de 50 caracteres</mat-error>
+
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Contraseña</mat-label>
+      <input matInput formControlName="passwordControl">
+      <mat-error *ngIf="signinForm.controls['passwordControl'].getError('minlength')">La contraseña debe tener más de 3 caracteres</mat-error>
+      <mat-error *ngIf="signinForm.controls['passwordControl'].getError('maxlength')">La contraseña debe tener menos de 20 caracteres</mat-error>
+      <mat-error *ngIf="signinForm.controls['passwordControl'].getError('passwordValid')">Debe ingresar una contraseña valida. Ejm: Venezuela.2024</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Confirmar Contraseña</mat-label>
+      <input matInput formControlName="confirmPasswordControl" [errorStateMatcher]="matcherTwoValuesEquals">
+      <mat-error *ngIf="signinForm.errors?.['isNotEqualValid']">La confirmación de la contraseña no es igual a la contraseña</mat-error>
+    </mat-form-field>
+    
+    <button mat-raised-button class="button" [disabled]="!signinForm.valid">Registrarse</button>
+  </form>
+
+</article>
+

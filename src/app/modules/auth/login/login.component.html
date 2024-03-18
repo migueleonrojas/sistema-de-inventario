@@ -1,0 +1,29 @@
+<article class="article-login">
+  <img class="logo" src="../../../../assets/images/fresh-fish-logo_600x.jpg" alt="Logo de Fresh Fish">
+  
+  <h1>Ingrese a Fresh Fish Inventario</h1>
+
+  <form mat-form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Nombre de Usuario</mat-label>
+      <input matInput formControlName="usernameControl">
+      <mat-error *ngIf="loginForm.controls['usernameControl'].getError('minlength')">El nombre de usuario debe tener más de 3 caracteres</mat-error>
+      <mat-error *ngIf="loginForm.controls['usernameControl'].getError('maxlength')">El nombre de usuario debe tener menos de 15 caracteres</mat-error>
+      <mat-error *ngIf="loginForm.controls['usernameControl'].getError('usernameValid')">Debe ingresar un nombre de usuario valido. Ejm: lguzman</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Contraseña</mat-label>
+      <input matInput formControlName="passwordControl">
+      <mat-error *ngIf="loginForm.controls['passwordControl'].getError('minlength')">La contraseña debe tener más de 3 caracteres</mat-error>
+      <mat-error *ngIf="loginForm.controls['passwordControl'].getError('maxlength')">La contraseña debe tener menos de 20 caracteres</mat-error>
+      <mat-error *ngIf="loginForm.controls['passwordControl'].getError('passwordValid')">Debe ingresar una contraseña valida. Ejm: Venezuela.2024</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button class="button"  [disabled]="!loginForm.valid">Ingresar</button>
+
+  </form>
+
+  
+</article>
+
+
