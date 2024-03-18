@@ -3,14 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
 
 const routes: Routes = [
+  
   {
     path: '',
-    component: AppComponent,
+    loadChildren: () => import('src/app/modules/auth/auth.module').then(m => m.AuthModule)
   },
   {
-    path: 'auth',
-    loadChildren: () => import('src/app/modules/auth/auth.module').then(m => m.AuthModule)
-  }  
+    path: 'home',
+    loadChildren: () => import('src/app/modules/home/home.module').then(m => m.HomeModule)
+  }
 ];
 
 

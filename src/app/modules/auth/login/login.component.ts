@@ -1,7 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
+import { SharingService } from 'src/app/core/services/sharing.service';
 import { LoginUserResponse } from 'src/app/interfaces/user/login-user-response.interface';
 import { UserService } from 'src/app/services/user/user.service';
 import { TypeDataValidator } from 'src/app/validators/type-data.validator';
@@ -18,6 +20,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private typeDataValidator:TypeDataValidator,
     private userService:UserService,
+    private router: Router,
+    private sharingService: SharingService
   ){}  
 
 
@@ -42,6 +46,9 @@ export class LoginComponent implements OnInit {
         this.loginForm.controls[name].markAsUntouched();
         this.loginForm.controls[name].markAsPending();
       }
+      this.sharingService.sharingUserObservableData = response.result.user;
+      this.router.navigate(['home/principal']);
+      
     });
 
   }

@@ -12,12 +12,15 @@ import { ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { HttpResponseInterceptor } from './interceptors/http-response.interceptor';
+import { SharingService } from './core/services/sharing.service';
+import { AuthComponent } from './modules/auth/auth.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SigninComponent,
-    LoginComponent
+    LoginComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,8 @@ import { HttpResponseInterceptor } from './interceptors/http-response.intercepto
   providers: [
     {provide: ValidatorIsEqualTwoValueControlsMatcher, useClass: ShowOnDirtyErrorStateMatcher},
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    {provide: HTTP_INTERCEPTORS, useClass: HttpResponseInterceptor, multi:true}
+    {provide: HTTP_INTERCEPTORS, useClass: HttpResponseInterceptor, multi:true},
+    SharingService
   ],
   bootstrap: [AppComponent]
 })
