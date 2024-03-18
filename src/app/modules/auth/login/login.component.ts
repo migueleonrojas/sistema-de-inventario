@@ -37,6 +37,11 @@ export class LoginComponent implements OnInit {
     })
     .subscribe((response: LoginUserResponse) => {
       localStorage.setItem('token_user_jwt', response.result.token);
+      for(let name in this.loginForm.controls) {
+        this.loginForm.controls[name].setValue('');
+        this.loginForm.controls[name].markAsUntouched();
+        this.loginForm.controls[name].markAsPending();
+      }
     });
 
   }

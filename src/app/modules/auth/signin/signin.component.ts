@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { SigninUserResponse } from 'src/app/interfaces/user/signin-user-response.interface';
+import { UserService } from 'src/app/services/user/user.service';
 import { ValidatorIsEqualTwoValueControlsMatcher } from 'src/app/shared/custom-errors/validate-is-equal-two-value-controls-matcher.error';
 import  {TypeDataValidator}  from 'src/app/validators/type-data.validator'
 
@@ -13,7 +15,8 @@ export class SigninComponent implements OnInit {
   matcherTwoValuesEquals = new ValidatorIsEqualTwoValueControlsMatcher();
 
   constructor(
-    private typeDataValidator:TypeDataValidator
+    private typeDataValidator:TypeDataValidator,
+    private userService:UserService,
   ){}  
 
 
@@ -34,8 +37,21 @@ export class SigninComponent implements OnInit {
   }
 
   signin() {
-
     
-    console.log(this.signinForm.valid);
+    
+    this.userService.signinUser({
+      fullname: this.signinForm.get('fullnameControl').value,
+      username: this.signinForm.get('usernameControl').value,
+      id_user:  this.signinForm.get('idControl').value,
+      email:    this.signinForm.get('emailControl').value,
+      password: this.signinForm.get('passwordControl').value
+    })
+    .subscribe((response: SigninUserResponse) => {
+      for(let name in this.signinForm.controls) {
+        this.signinForm.controls[name].setValue('');
+        this.signinForm.controls[name].markAsUntouched();
+        this.signinForm.controls[name].markAsPending();
+      }
+    });
   }
 }
