@@ -1,16 +1,14 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild, AfterContentChecked } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { distinctUntilChanged, tap } from 'rxjs';
-import { SharingService } from 'src/app/core/services/sharing.service';
+import { distinctUntilChanged } from 'rxjs';
 import { User } from 'src/app/interfaces/user/user.interface';
-
-@Component({
+@Component({ 
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss']
 })
 
-export class AuthComponent{
+export class AuthComponent {
 
   @ViewChild('hideSection') hideSection: ElementRef<HTMLDivElement>;
   @ViewChild('mainSectionContainer') mainSectionContainer: ElementRef<HTMLDivElement>;
@@ -28,20 +26,14 @@ export class AuthComponent{
 
 
   constructor(
-    private breakpointObserver: BreakpointObserver,
-  ){
+    private breakpointObserver: BreakpointObserver
 
-  }
+  ){}
   ngOnInit(): void {
     this.breakpoint$.subscribe(() =>
       this.breakpointChanged()
     );
-
-
   }
-
-  
-
 
   private breakpointChanged() {
 
@@ -67,16 +59,12 @@ export class AuthComponent{
 
 
   toggleSection() {
-    
-    
     this.titleButton = this.titleButton === 'Registrarse' ? 'Ingresar' : 'Registrarse';
     let initialTranslate: string = 'translate(0, 0)';
     let translated: string =  window.innerWidth > 800 ? 'translate(100%, 0)' : 'translate(0, 100%)';
     let transform = this.titleButton === 'Registrarse' ? initialTranslate : translated;
 
     (this.hideSection.nativeElement as HTMLDivElement).style.transform = transform;
-
-    
   }
 
 

@@ -1,0 +1,58 @@
+
+
+<article id="main-section-drawer">
+  <button mat-icon-button color="primary" (click)="toggleMatDrawer()">
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <mat-list id="mat-list">
+    <mat-divider></mat-divider>
+    <div class="mat-subheader" mat-subheader>
+      <mat-icon matListItemIcon>inventory</mat-icon>
+      <span>Opciones de Inventario</span>
+    </div>
+    <mat-divider></mat-divider>
+    <mat-list-item (click)="goTo('home/consult-inventory')">
+      <mat-icon matListItemIcon>search</mat-icon>
+      <div matListItemTitle>Consultar Inventario</div>
+    </mat-list-item>
+    <mat-list-item (click)="goTo('home/create-inventory')">
+      <mat-icon matListItemIcon>fiber_new</mat-icon>
+      <div matListItemTitle>Crear Inventario</div>
+    </mat-list-item>
+    <mat-list-item (click)="goTo('home/update-inventory')">
+      <mat-icon matListItemIcon>edit</mat-icon>
+      <div matListItemTitle>Modificar Inventario</div>
+    </mat-list-item>
+    <mat-list-item (click)="goTo('home/delete-inventory')">
+      <mat-icon matListItemIcon>delete</mat-icon>
+      <div matListItemTitle>Eliminar Inventario</div>
+    </mat-list-item>
+  
+    <mat-divider></mat-divider>
+    <div class="mat-subheader" mat-subheader>
+      <mat-icon matListItemIcon>article</mat-icon>
+      <span>Opciones de Articulos</span>
+    </div>
+    <mat-divider></mat-divider>
+    <mat-list-item (click)="goTo('home/consult-article')">
+      <mat-icon matListItemIcon>search</mat-icon>
+      <div matListItemTitle>Consultar Articulo</div>
+    </mat-list-item>
+    <mat-list-item (click)="goTo('home/create-article')">
+      <mat-icon matListItemIcon>fiber_new</mat-icon>
+      <div matListItemTitle>Crear Articulo</div>
+    </mat-list-item>
+    <mat-list-item (click)="goTo('home/update-article')">
+      <mat-icon matListItemIcon>edit</mat-icon>
+      <div matListItemTitle>Modificar Articulo</div>
+    </mat-list-item>
+    <mat-list-item (click)="goTo('home/delete-article')">
+      <mat-icon matListItemIcon>delete</mat-icon>
+      <div matListItemTitle>Eliminar Articulo</div>
+    </mat-list-item>
+  
+  
+  </mat-list>
+</article>
+

@@ -13,6 +13,7 @@ import  {TypeDataValidator}  from 'src/app/validators/type-data.validator'
 export class SigninComponent implements OnInit {
   signinForm: FormGroup;
   matcherTwoValuesEquals = new ValidatorIsEqualTwoValueControlsMatcher();
+  hidePassword: boolean = true;
 
   constructor(
     private typeDataValidator:TypeDataValidator,

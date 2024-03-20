@@ -5,8 +5,10 @@
 
   <form mat-form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <mat-form-field>
+      
       <mat-label>Nombre de Usuario</mat-label>
       <input matInput formControlName="usernameControl">
+      
       <mat-error *ngIf="loginForm.controls['usernameControl'].getError('minlength') && this.loginForm.controls['usernameControl'].touched">
         El nombre de usuario debe tener más de 3 caracteres
       </mat-error>
@@ -19,7 +21,8 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>Contraseña</mat-label>
-      <input matInput formControlName="passwordControl">
+      <input matInput formControlName="passwordControl" [type]="hidePassword ? 'password': 'text'">
+      <mat-icon matSuffix (click)="hidePassword=!hidePassword">{{hidePassword ? 'visibility':'visibility_off'}}</mat-icon>
       <mat-error *ngIf="loginForm.controls['passwordControl'].getError('minlength') && this.loginForm.controls['passwordControl'].touched">
         La contraseña debe tener más de 3 caracteres
       </mat-error>

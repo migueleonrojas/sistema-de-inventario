@@ -49,7 +49,8 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>Contraseña</mat-label>
-      <input matInput formControlName="passwordControl">
+      <input matInput formControlName="passwordControl" [type]="hidePassword ? 'password': 'text'">
+      <mat-icon matSuffix (click)="hidePassword=!hidePassword">{{hidePassword ? 'visibility':'visibility_off'}}</mat-icon>
       <mat-error *ngIf="signinForm.controls['passwordControl'].getError('minlength') && this.signinForm.controls['passwordControl'].touched">
         La contraseña debe tener más de 3 caracteres
       </mat-error>
@@ -62,7 +63,8 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>Confirmar Contraseña</mat-label>
-      <input matInput formControlName="confirmPasswordControl" [errorStateMatcher]="matcherTwoValuesEquals">
+      <input matInput formControlName="confirmPasswordControl" [errorStateMatcher]="matcherTwoValuesEquals" [type]="hidePassword ? 'password': 'text'">
+      <mat-icon matSuffix (click)="hidePassword=!hidePassword">{{hidePassword ? 'visibility':'visibility_off'}}</mat-icon>
       <mat-error *ngIf="signinForm.errors?.['isNotEqualValid']">La confirmación de la contraseña no es igual a la contraseña</mat-error>
     </mat-form-field>
     <button mat-raised-button class="button" [disabled]="!signinForm.valid">Registrarse</button>

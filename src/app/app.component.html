@@ -1,1 +1,8 @@
-<router-outlet></router-outlet>
+<mat-drawer-container class="example-container" hasBackdrop="true">
+  <mat-drawer #matDrawer mode="over">
+    <app-mat-drawer></app-mat-drawer>
+  </mat-drawer>
+  <mat-drawer-content id="fullscreen" class="fullscreen">
+    <router-outlet ></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

@@ -1,0 +1,30 @@
+#mat-list mat-list-item {
+  cursor: pointer;
+  transition: background-color ease 0.5s;
+}
+
+#mat-list mat-list-item:hover {
+  background-color: #82b0f3; 
+}
+
+
+#mat-list .mat-subheader {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin-left: 0.5rem;
+  
+}
+
+#mat-list mat-divider {
+  border-width: 0.2rem;
+}
+
+#main-section-drawer button {
+  display: block;
+  background-color: #fd0000;
+  color: #fff;
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+}

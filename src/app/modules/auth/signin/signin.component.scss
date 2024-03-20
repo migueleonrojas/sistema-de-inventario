@@ -36,3 +36,7 @@ article.article-signin button.button.mdc-button.mdc-button--raised.mat-mdc-raise
 mat-error + mat-error {
   display: none;
 }
+
+mat-icon {
+  cursor: pointer;
+}

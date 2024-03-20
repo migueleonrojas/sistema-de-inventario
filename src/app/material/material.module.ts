@@ -44,8 +44,6 @@ import { MatTableModule } from '@angular/material/table';
 
 
 
-
-
 @NgModule({
   declarations: [],
   imports: [
@@ -84,7 +82,7 @@ import { MatTableModule } from '@angular/material/table';
     MatTooltipModule,
     MatPaginatorModule,
     MatSortModule,
-    MatTableModule,
+    MatTableModule
   ],
   exports: [
     MatAutocompleteModule,
