@@ -51,6 +51,17 @@
       <mat-icon matListItemIcon>delete</mat-icon>
       <div matListItemTitle>Eliminar Articulo</div>
     </mat-list-item>
+
+    <mat-divider></mat-divider>
+    <div class="mat-subheader" mat-subheader>
+      <mat-icon matListItemIcon>article</mat-icon>
+      <span>Opciones del Sistema</span>
+    </div>
+    <mat-divider></mat-divider>
+    <mat-list-item (click)="exitToApp()">
+      <mat-icon matListItemIcon>exit_to_app</mat-icon>
+      <div matListItemTitle>Salir</div>
+    </mat-list-item>
   
   
   </mat-list>

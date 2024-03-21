@@ -1,1 +1,41 @@
-<p>create-inventory works!</p>
+<article>
+
+  <h1>Creando Inventario Nuevo</h1>
+  
+  <form mat-form [formGroup]="inventoryCreateForm" (ngSubmit)="onSubmit()">
+
+    
+    <mat-form-field>
+      
+      <mat-label>El nombre del Inventario</mat-label>
+      <input matInput formControlName="nameInventoryControl">
+      
+      <mat-error *ngIf="inventoryCreateForm.controls['nameInventoryControl'].getError('minlength') && this.inventoryCreateForm.controls['nameInventoryControl'].touched">
+        El nombre del Inventario debe tener más de 3 caracteres
+      </mat-error>
+      <mat-error *ngIf="inventoryCreateForm.controls['nameInventoryControl'].getError('maxlength') && this.inventoryCreateForm.controls['nameInventoryControl'].touched">
+        El nombre del Inventario debe tener menos de 100 caracteres
+      </mat-error>
+      <mat-error *ngIf="inventoryCreateForm.controls['nameInventoryControl'].getError('nameValid') && this.inventoryCreateForm.controls['nameInventoryControl'].touched">
+        Debe ingresar un nombre del Inventario valido. Ejm: Equipos
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Nombre del Departamento del Inventario</mat-label>
+      <input matInput formControlName="departmentControl">
+  
+      <mat-error *ngIf="inventoryCreateForm.controls['departmentControl'].getError('minlength') && this.inventoryCreateForm.controls['departmentControl'].touched">
+        El Nombre del Departamento del Inventario debe tener más de 3 caracteres
+      </mat-error>
+      <mat-error *ngIf="inventoryCreateForm.controls['departmentControl'].getError('maxlength') && this.inventoryCreateForm.controls['departmentControl'].touched">
+        El Nombre del Departamento del Inventario debe tener menos de 100 caracteres
+      </mat-error>
+      <mat-error *ngIf="inventoryCreateForm.controls['departmentControl'].getError('nameValid') && this.inventoryCreateForm.controls['departmentControl'].touched">
+        Debe ingresar un Nombre del Departamento del Inventario valido. Ejm: Compras
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button class="button"  [disabled]="!inventoryCreateForm.valid">Crear Inventario</button>
+
+  </form>
+</article>

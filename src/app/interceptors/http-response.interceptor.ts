@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { Observable, catchError, filter, findIndex, firstValueFrom, lastValueFrom, map, EMPTY } from 'rxjs';
+import { Observable, catchError, filter, map, EMPTY } from 'rxjs';
 import { HttpError } from '../interfaces/http-error-response/http-error.interface';
 import swal from'sweetalert2';
 import { HttpSuccessful } from '../interfaces/http-sucessful-response/http-sucessful.interface';

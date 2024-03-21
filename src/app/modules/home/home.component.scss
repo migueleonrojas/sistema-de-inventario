@@ -1,7 +1,17 @@
-#main-section-principal button {
-  position: absolute;
-  background-color: #003bb9;
-  color: #fff;
-  top: 1rem;
-  left: 1rem;
+.spacer {
+  flex: 1 1 auto;
 }
+
+mat-toolbar {
+  background-color: #e14422;
+}
+
+@media (max-width:620px) {
+
+
+  .text {
+    display: none;
+  }
+
+}
+

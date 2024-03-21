@@ -32,6 +32,11 @@ export class TypeDataValidator {
   }
 
 
+  public validateName(control: AbstractControl) {
+    return RegExp('^.+$','g').test(control.value) ? null : {'nameValid':true}
+  }
+
+
   public isEqualValue(controlName1: string, controlName2: string): ValidatorFn {
     
     return (controls: AbstractControl) => {       

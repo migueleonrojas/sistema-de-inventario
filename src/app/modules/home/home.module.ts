@@ -10,6 +10,9 @@ import { CreateArticleComponent } from './article/create-article/create-article.
 import { ConsultArticleComponent } from './article/consult-article/consult-article.component';
 import { UpdateArticleComponent } from './article/update-article/update-article.component';
 import { DeleteArticleComponent } from './article/delete-article/delete-article.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from 'src/app/interceptors/auth.interceptor';
 
 
 @NgModule({
@@ -27,7 +30,11 @@ import { DeleteArticleComponent } from './article/delete-article/delete-article.
   imports: [
     CommonModule,
     HomeRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
+  ],
+  providers: [
+    /* {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, */
   ]
 })
 export class HomeModule { }
