@@ -1,50 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CreateInventoryResponse } from 'src/app/interfaces/inventory/create-inventory-response.interface';
-
-import { InventoryService } from 'src/app/services/inventory/inventory.service';
-import { TypeDataValidator } from 'src/app/validators/type-data.validator';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-create-inventory',
   templateUrl: './create-inventory.component.html',
   styleUrls: ['./create-inventory.component.scss']
 })
-export class CreateInventoryComponent implements OnInit {
+export class CreateInventoryComponent {
   
-  inventoryCreateForm: FormGroup;
-
-  constructor(
-    private typeDataValidator:TypeDataValidator,
-    private inventoryService:InventoryService
-  ){}
-
-  ngOnInit(): void {
-    this.inventoryCreateForm = new FormGroup({
-      nameInventoryControl: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(100), this.typeDataValidator.validateName]),
-      departmentControl:    new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(100),this.typeDataValidator.validateName])
-    })
-  }
-
-  onSubmit() {
-    this.inventoryService.createInventory({
-      department: this.inventoryCreateForm.get('departmentControl').value,
-      name_inventory: this.inventoryCreateForm.get('nameInventoryControl').value
-    })
-    .subscribe((response: CreateInventoryResponse) => {
-
-      for(let name in this.inventoryCreateForm.controls) {
-        this.inventoryCreateForm.controls[name].setValue('');
-        this.inventoryCreateForm.controls[name].markAsUntouched();
-        this.inventoryCreateForm.controls[name].markAsPending();
-      }
-
-    })
-  }
-
-  
-
-
-
-
+ 
 }

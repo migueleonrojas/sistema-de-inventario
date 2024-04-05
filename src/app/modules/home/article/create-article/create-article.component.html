@@ -1,3 +1,86 @@
 <article>
   <h1>Creando Articulo Nuevo</h1>
+  <form class="form" [formGroup]="articleCreateForm" (ngSubmit)="createArticle()">
+    <mat-form-field>
+      <mat-label>Nombre del Articulo</mat-label>
+      <input matInput formControlName="nameArticleControl">
+      <mat-error *ngIf="articleCreateForm.controls['nameArticleControl'].getError('required') && this.articleCreateForm.controls['nameArticleControl'].touched">
+        El Nombre del Articulo es requerido
+      </mat-error>
+      <mat-error *ngIf="articleCreateForm.controls['nameArticleControl'].getError('minlength') && this.articleCreateForm.controls['nameArticleControl'].touched">
+        El Nombre del Articulo debe tener más de 3 caracteres
+      </mat-error>
+      <mat-error *ngIf="articleCreateForm.controls['nameArticleControl'].getError('maxlength') && this.articleCreateForm.controls['nameArticleControl'].touched">
+        El Nombre del Articulo debe tener menos de 100 caracteres
+      </mat-error>
+      <mat-error *ngIf="articleCreateForm.controls['nameArticleControl'].getError('nameValid') && this.articleCreateForm.controls['nameArticleControl'].touched">
+        Debe ingresar un Nombre del Articulo valido. Ejm: Computadora</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Nombre de la marca del Articulo</mat-label>
+      <input matInput formControlName="brandArticleControl">
+      <mat-error *ngIf="articleCreateForm.controls['brandArticleControl'].getError('required') && this.articleCreateForm.controls['brandArticleControl'].touched">
+        El Nombre de la marca del Articulo es requerido
+      </mat-error>
+      <mat-error *ngIf="articleCreateForm.controls['brandArticleControl'].getError('minlength') && this.articleCreateForm.controls['brandArticleControl'].touched">
+        El Nombre de la marca del Articulo debe tener más de 3 caracteres
+      </mat-error>
+      <mat-error *ngIf="articleCreateForm.controls['brandArticleControl'].getError('maxlength') && this.articleCreateForm.controls['brandArticleControl'].touched">
+        El Nombre de la marca del Articulo debe tener menos de 100 caracteres
+      </mat-error>
+      <mat-error *ngIf="articleCreateForm.controls['brandArticleControl'].getError('nameValid') && this.articleCreateForm.controls['brandArticleControl'].touched">
+        Debe ingresar un nombre de la marca del Articulo valido. Ejm: Sony
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Nombre del modelo del Articulo</mat-label>
+      <input matInput formControlName="modelArticleControl">
+      <mat-error *ngIf="articleCreateForm.controls['modelArticleControl'].getError('required') && this.articleCreateForm.controls['modelArticleControl'].touched">
+        El Nombre del modelo del Articulo es requerido
+      </mat-error>
+      <mat-error *ngIf="articleCreateForm.controls['modelArticleControl'].getError('minlength') && this.articleCreateForm.controls['modelArticleControl'].touched">
+        El Nombre del modelo del Articulo debe tener más de 3 caracteres
+      </mat-error>
+      <mat-error *ngIf="articleCreateForm.controls['modelArticleControl'].getError('maxlength') && this.articleCreateForm.controls['modelArticleControl'].touched">
+        El Nombre del modelo del Articulo debe tener menos de 100 caracteres
+      </mat-error>
+      <mat-error *ngIf="articleCreateForm.controls['modelArticleControl'].getError('nameValid') && this.articleCreateForm.controls['modelArticleControl'].touched">
+        Debe ingresar un nombre del modelo del Articulo valido. Ejm: Compact
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Serial del Articulo</mat-label>
+      <input matInput formControlName="serialArticleControl">
+      <mat-error *ngIf="articleCreateForm.controls['serialArticleControl'].getError('required') && this.articleCreateForm.controls['serialArticleControl'].touched">
+        El Serial del Articulo es requerido
+      </mat-error>
+      <mat-error *ngIf="articleCreateForm.controls['serialArticleControl'].getError('minlength') && this.articleCreateForm.controls['serialArticleControl'].touched">
+        El Serial del Articulo debe tener más de 3 caracteres
+      </mat-error>
+      <mat-error *ngIf="articleCreateForm.controls['serialArticleControl'].getError('maxlength') && this.articleCreateForm.controls['serialArticleControl'].touched">
+        El Serial del Articulo debe tener menos de 100 caracteres
+      </mat-error>
+      <mat-error *ngIf="articleCreateForm.controls['serialArticleControl'].getError('nameValid') && this.articleCreateForm.controls['serialArticleControl'].touched">
+        Debe ingresar un Serial del Articulo valido. Ejm: 0000-0000-0000-0000
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Observación del Articulo</mat-label>
+      <textarea matInput formControlName="observationArticleControl" rows="7"></textarea>
+      <mat-error *ngIf="articleCreateForm.controls['observationArticleControl'].getError('required') && this.articleCreateForm.controls['observationArticleControl'].touched">
+        La observación del Articulo es requerido
+      </mat-error>
+      <mat-error *ngIf="articleCreateForm.controls['observationArticleControl'].getError('minlength') && this.articleCreateForm.controls['observationArticleControl'].touched">
+        La observación del Articulo debe tener más de 3 caracteres
+      </mat-error>
+      <mat-error *ngIf="articleCreateForm.controls['observationArticleControl'].getError('maxlength') && this.articleCreateForm.controls['observationArticleControl'].touched">
+        La observación del Articulo debe tener menos de 4000 caracteres
+      </mat-error>
+      <mat-error *ngIf="articleCreateForm.controls['observationArticleControl'].getError('passwordValid') && this.articleCreateForm.controls['observationArticleControl'].touched">
+        Debe ingresar una observación del Articulo valida. Ejm: El articulo tiene la siguiente observación
+      </mat-error>
+    </mat-form-field>
+    
+    <button mat-raised-button class="button" [disabled]="!articleCreateForm.valid">Crear Articulo</button>
+  </form>
 </article>

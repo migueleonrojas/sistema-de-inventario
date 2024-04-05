@@ -1,0 +1,119 @@
+/* input[type=number]::-webkit-inner-spin-button
+{ 
+
+    appearance: none;
+    margin: 0; 
+} */
+
+h1 {
+  text-align: center;
+}
+
+article.article-selecting {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+p.search-end {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.no-results{
+  margin-top: 1rem;
+  font-weight: bold;
+  font-size: 2rem;
+  text-align: center;
+}
+
+section.articles {
+  display: flex;
+  
+}
+
+
+section.articles > .list-articles {
+  flex: 1;
+  border-right: 1px dotted #000;
+}
+
+section.articles > .list-articles h2, section.articles > .selected-articles h2 {
+  text-align: center;
+}
+
+section.articles > .list-articles button, section.articles > .selected-articles .button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+section.articles > .selected-articles {
+  flex: 1;
+}
+
+
+section.articles > .selected-articles .list-content {
+  display: flex;
+  align-content: stretch;
+  /* justify-content: center; */
+  align-items: center;
+ /*  gap: 0.2rem; */
+}
+section.articles > .selected-articles .selected-articles-controls {
+  margin: auto 2rem auto auto;
+  display: flex;
+  align-content: stretch;
+  gap: 0.2rem;
+}
+
+.selected-articles-controls .amount::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0; 
+}
+
+.selected-articles-controls .amount {
+  text-align: center;
+  width: 3rem;
+  font-size: 2rem;
+}
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 0.5rem;
+}
+
+.elements-selected {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+@media (max-width:800px) {
+
+  form {
+    gap: 2rem;
+  }
+
+}
+
+
+@media (max-width:520px) {
+
+  article.article-selecting {
+    width: 95%;
+  }
+
+}
+
+
+

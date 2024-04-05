@@ -17,10 +17,10 @@ import { AuthInterceptor } from 'src/app/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
-    CreateInventoryComponent,
+/*     CreateInventoryComponent,
     ConsultInventoryComponent,
     UpdateInventoryComponent,
-    DeleteInventoryComponent,
+    DeleteInventoryComponent, */
     CreateArticleComponent,
     ConsultArticleComponent,
     UpdateArticleComponent,
@@ -34,7 +34,6 @@ import { AuthInterceptor } from 'src/app/interceptors/auth.interceptor';
     ReactiveFormsModule
   ],
   providers: [
-    /* {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, */
   ]
 })
 export class HomeModule { }
