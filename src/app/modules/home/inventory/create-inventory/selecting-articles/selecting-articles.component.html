@@ -23,7 +23,7 @@
       
       </mat-form-field>
 
-      <button mat-raised-button class="button"  [disabled]="!consultArticleForm.valid">Consultar Articulos</button>
+      <button mat-raised-button [disabled]="!consultArticleForm.valid">Consultar Articulos</button>
     </form>
 
     <p class="search-end">Buscando articulo por su: <b>{{selectedAtributteArticle.viewValue}}</b></p> 
@@ -32,15 +32,14 @@
 </section>
 
 <section class="articles">
-  <article class="list-articles">
 
-    <ng-template [ngIf]="isConsultedArticles" [ngIfElse]="withoutConsultingYet">
+  <ng-template [ngIf]="isConsultedArticles" [ngIfElse]="withoutConsultingYet">
+    <article class="list-articles">
       <h2>Listado de articulos encontrados</h2>
       <ng-template [ngIf]="articles.length != 0" [ngIfElse]="noResults">
-        
         <mat-selection-list #articlesList>
-          <mat-list-option *ngFor="let article of articles" [value]="article">
-            Nombre: {{article.name}}
+          <mat-list-option class="list-option" *ngFor="let article of articles" [value]="article">
+           <span class="span-list-option">Nombre: {{article.name}}</span> 
           </mat-list-option>
         </mat-selection-list>
         <button mat-raised-button class="button" (click)="addingArticles(articlesList)" [disabled]="articlesList.selectedOptions.selected.length == 0">Seleccionar Articulos</button>
@@ -50,42 +49,64 @@
         <p class="no-results">Sin Resultados</p>
       </ng-template>
 
-    </ng-template>
 
-    <ng-template #withoutConsultingYet>
-    </ng-template>
+    </article>
 
-  </article>
+  </ng-template>
 
-  <article class="selected-articles">
-    <ng-template [ngIf]="addedArticles.length != 0">
+  <ng-template #withoutConsultingYet>
+  </ng-template>
+
+
+  <ng-template [ngIf]="isConsultedArticles" [ngIfElse]="withoutConsultingYet">
+    <article class="selected-articles">
+
       <h2>Listado de articulos seleccionados</h2>
-      <mat-selection-list #addedArticlesList>
-        <mat-list-option *ngFor="let addedArticle of addedArticles; let i = index" [value]="addedArticle">
-          <article class="list-content">
-            <span>{{addedArticle.name}}</span>
-            <div class="selected-articles-controls">
-              <button mat-mini-fab color="primary" (click)="substractAmount($event, i)">
-                <mat-icon>remove</mat-icon>
-              </button>
-              <input class="amount" type="number" min="1" max="100" (click)="stopPropagation($event)" [(ngModel)]=addedArticle.amount>
-              <button mat-mini-fab color="primary" (click)="addAmount($event, i)">
-                <mat-icon>add</mat-icon>
-              </button>
-            </div>
-          </article>
-          
-        </mat-list-option>
-      </mat-selection-list>
-      <div class="buttons">
-        <button mat-mini-fab color="primary" matTooltip="Eliminar de la lista los articulos seleccionados" [disabled]="addedArticlesList.selectedOptions.selected.length == 0" (click)="deleteSelectedArticles(addedArticlesList)">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </div>
-      <p class="elements-selected">Cantidad de elementos seleccionados: <b>{{addedArticles.length}}</b></p>
-      <button mat-raised-button class="button" (click)="saveArticles(addedArticlesList)">Guardar Articulos</button>
-    </ng-template>
-  </article>
+      <ng-template [ngIf]="addedArticles.length != 0" [ngIfElse]="noResults">
+        <mat-selection-list #addedArticlesList>
+          <mat-list-option class="list-option" *ngFor="let addedArticle of addedArticles; let i = index" [value]="addedArticle">
+            
+            <article class="list-option-content">
+              <span>{{addedArticle.name}}</span>
+              <div class="selected-articles-controls">
+                <button mat-mini-fab color="primary" (click)="substractAmount($event, i)">
+                  <mat-icon>remove</mat-icon>
+                </button>
+                <input class="amount" type="number" min="1" max="100" (click)="stopPropagation($event)" [(ngModel)]=addedArticle.amount>
+                <button mat-mini-fab color="primary" (click)="addAmount($event, i)">
+                  <mat-icon>add</mat-icon>
+                </button>
+                <button mat-icon-button  matTooltip="Ver Observación">
+                  <mat-icon>visibility</mat-icon>
+                </button>
+                <button mat-icon-button  matTooltip="Editar Observación">
+                  <mat-icon>edit</mat-icon>
+                </button>
+              </div>
+            </article>
+            
+            
+          </mat-list-option>
+        </mat-selection-list>
+        <div class="buttons">
+          <button mat-mini-fab color="primary" matTooltip="Eliminar de la lista los articulos seleccionados" [disabled]="addedArticlesList.selectedOptions.selected.length == 0" (click)="deleteSelectedArticles(addedArticlesList)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+        <p class="elements-selected">Cantidad de elementos seleccionados: <b>{{addedArticles.length}}</b></p>
+        <button mat-raised-button class="button" (click)="saveArticles(addedArticlesList)">Guardar Articulos</button>
+      </ng-template>
+
+      <ng-template #noResults>
+        <p class="no-results">No ha seleccionado articulos aún.</p>
+      </ng-template>
+
+
+    </article>
+  </ng-template>
+  <ng-template #withoutConsultingYet>
+  </ng-template>
+   
 </section>
 
 

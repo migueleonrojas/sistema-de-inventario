@@ -8,6 +8,7 @@ import { ConsultArticleResponse } from 'src/app/interfaces/article/consult-artic
 import { ArticleService } from 'src/app/services/article/article.service';
 import * as arrayUtil from 'src/app/utils/array.util';
 import swal, { SweetAlertResult } from'sweetalert2';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-selecting-articles',
@@ -35,7 +36,8 @@ export class SelectingArticlesComponent implements OnInit  {
   isConsultedArticles: boolean = false;
   
   constructor(
-    private articleService:ArticleService
+    private articleService:ArticleService,
+    public matDialog: MatDialog
   ){}
 
 
