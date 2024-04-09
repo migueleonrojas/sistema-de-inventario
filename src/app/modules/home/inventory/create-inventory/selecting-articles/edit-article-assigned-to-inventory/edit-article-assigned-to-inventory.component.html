@@ -1,0 +1,45 @@
+<article class="form-content" id="form-content">
+
+  <h1>Puede editar la cantidad y la observación del Articulo</h1>
+
+  <form mat-form [formGroup]="editArticleAssignedToInventoryForm">
+    <mat-form-field>
+      <mat-label>Nombre del Articulo</mat-label>
+      <input matInput formControlName="nameArticleForm">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Modelo del Articulo</mat-label>
+      <input matInput formControlName="modelArticleForm">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Marca del Articulo</mat-label>
+      <input matInput formControlName="brandArticleForm">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Cantidad</mat-label>
+      <input matInput formControlName="amountArticleForm">
+      <mat-error *ngIf="editArticleAssignedToInventoryForm.controls['amountArticleForm'].getError('numberValid') && this.editArticleAssignedToInventoryForm.controls['amountArticleForm'].touched">
+        Debe ingresar un número valido.
+      </mat-error>
+      <mat-error *ngIf="editArticleAssignedToInventoryForm.controls['amountArticleForm'].getError('min') && this.editArticleAssignedToInventoryForm.controls['amountArticleForm'].touched">
+        Debe ingresar un número mayor a 0.
+      </mat-error>
+      <mat-error *ngIf="editArticleAssignedToInventoryForm.controls['amountArticleForm'].getError('max') && this.editArticleAssignedToInventoryForm.controls['amountArticleForm'].touched">
+        Debe ingresar un número menor a 100.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Serial del Articulo</mat-label>
+      <input matInput formControlName="serialArticleForm">
+    </mat-form-field>
+    <mat-form-field>
+      <textarea matInput formControlName="observationArticleForm" rows="7"></textarea>
+      <mat-error *ngIf="editArticleAssignedToInventoryForm.controls['observationArticleForm'].getError('observationValid') && this.editArticleAssignedToInventoryForm.controls['observationArticleForm'].touched">
+        Debe ingresar un número menor a 100.
+      </mat-error>
+    </mat-form-field>
+  </form>
+
+  <button mat-raised-button class="button" (click)="closeDialog()">Cerrar</button>
+  <button mat-raised-button class="button" (click)="closeAndSaveChangesDialog()">Cerrar y Modificar Articulo</button>
+</article>

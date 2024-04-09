@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatStepper } from '@angular/material/stepper';
 import { CreateInventoryResponse } from 'src/app/interfaces/inventory/create-inventory-response.interface';
 
 import { InventoryService } from 'src/app/services/inventory/inventory.service';
@@ -11,6 +12,8 @@ import { TypeDataValidator } from 'src/app/validators/type-data.validator';
   styleUrls: ['./creating-inventory.component.scss']
 })
 export class CreatingInventoryComponent implements OnInit {
+  @Output() form = new EventEmitter<FormGroup>();
+ 
   inventoryCreateForm: FormGroup;
 
   constructor(
@@ -22,10 +25,19 @@ export class CreatingInventoryComponent implements OnInit {
     this.inventoryCreateForm = new FormGroup({
       nameInventoryControl: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(100), this.typeDataValidator.validateName]),
       departmentControl:    new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(100),this.typeDataValidator.validateName])
-    })
+    });
+
+    
+
+    
+
+  
+    
   }
 
-  onSubmit() {
+
+
+  /* onSubmit() {
     this.inventoryService.createInventory({
       department: this.inventoryCreateForm.get('departmentControl').value,
       name_inventory: this.inventoryCreateForm.get('nameInventoryControl').value
@@ -39,5 +51,16 @@ export class CreatingInventoryComponent implements OnInit {
       }
 
     })
+  } */
+
+  onSubmit(){
+
+    
+
+    this.form.emit(this.inventoryCreateForm);
+    
+
+    
   }
+
 }

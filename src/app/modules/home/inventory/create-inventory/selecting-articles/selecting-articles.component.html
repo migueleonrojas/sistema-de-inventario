@@ -25,7 +25,8 @@
 
       <button mat-raised-button [disabled]="!consultArticleForm.valid">Consultar Articulos</button>
     </form>
-
+    
+    <button mat-raised-button class="mg-tp-1" (click)="backStepper()">Retroceder</button>
     <p class="search-end">Buscando articulo por su: <b>{{selectedAtributteArticle.viewValue}}</b></p> 
 
   </article>
@@ -63,23 +64,23 @@
 
       <h2>Listado de articulos seleccionados</h2>
       <ng-template [ngIf]="addedArticles.length != 0" [ngIfElse]="noResults">
-        <mat-selection-list #addedArticlesList>
-          <mat-list-option class="list-option" *ngFor="let addedArticle of addedArticles; let i = index" [value]="addedArticle">
+        <mat-selection-list #addedArticlesList id="mat-selection-list">
+          <mat-list-option class="list-option selected-option" *ngFor="let addedArticle of addedArticles; let i = index" [value]="addedArticle">
             
-            <article class="list-option-content">
-              <span>{{addedArticle.name}}</span>
+            <article class="list-option-content selected-option-content">
+              <span class="span-list-option pd-rig-2">{{addedArticle.name}}</span>
               <div class="selected-articles-controls">
                 <button mat-mini-fab color="primary" (click)="substractAmount($event, i)">
                   <mat-icon>remove</mat-icon>
                 </button>
-                <input class="amount" type="number" min="1" max="100" (click)="stopPropagation($event)" [(ngModel)]=addedArticle.amount>
+                <input class="amount" type="number" min="1" max="100" [(ngModel)]=addedArticle.amount>
                 <button mat-mini-fab color="primary" (click)="addAmount($event, i)">
                   <mat-icon>add</mat-icon>
                 </button>
-                <button mat-icon-button  matTooltip="Ver Observación">
+                <button mat-icon-button  matTooltip="Ver Detalles del Articulo" (click)="viewArticleAssignedToInventory(addedArticle, $event, i)">
                   <mat-icon>visibility</mat-icon>
                 </button>
-                <button mat-icon-button  matTooltip="Editar Observación">
+                <button mat-icon-button  matTooltip="Editar Observacion del Articulo" (click)="editArticleAssignedToInventory(addedArticle, $event, i)">
                   <mat-icon>edit</mat-icon>
                 </button>
               </div>

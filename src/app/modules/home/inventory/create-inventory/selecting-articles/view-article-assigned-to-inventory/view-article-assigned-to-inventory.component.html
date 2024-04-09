@@ -1,0 +1,32 @@
+<article class="form-content" id="form-content">
+
+  <h1>Detalles del articulo</h1>
+
+  <form mat-form [formGroup]="viewArticleAssignedToInventoryForm">
+    <mat-form-field>
+      <mat-label>Nombre del Articulo</mat-label>
+      <input matInput formControlName="nameArticleForm">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Modelo del Articulo</mat-label>
+      <input matInput formControlName="modelArticleForm">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Marca del Articulo</mat-label>
+      <input matInput formControlName="brandArticleForm">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Cantidad</mat-label>
+      <input matInput formControlName="amountArticleForm">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Serial del Articulo</mat-label>
+      <input matInput formControlName="serialArticleForm">
+    </mat-form-field>
+    <mat-form-field>
+      <textarea matInput formControlName="observationArticleForm" rows="7"></textarea>
+    </mat-form-field>
+  </form>
+
+  <button mat-raised-button class="button" (click)="closeDialog()">Cerrar</button>
+</article>

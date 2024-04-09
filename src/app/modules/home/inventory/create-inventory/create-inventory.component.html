@@ -1,2 +1,8 @@
-<!-- <app-creating-inventory></app-creating-inventory> -->
-<app-selecting-articles></app-selecting-articles>
+<mat-stepper [linear]="isLinear" #stepper>
+  <mat-step [completed]="stepCreatingInventory">
+    <app-creating-inventory (form)="getFormChild($event)"></app-creating-inventory>
+  </mat-step>
+  <mat-step [completed]="stepSelectingArticles">
+    <app-selecting-articles (selectionList)="getSelectionListChild($event)" (back)="backStepper($event)"></app-selecting-articles>
+  </mat-step>
+</mat-stepper>

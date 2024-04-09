@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatListOption, MatSelectionList } from '@angular/material/list';
 import { ArticleAssignedToInventory } from 'src/app/interfaces/article-assigned-to-inventory/article_assigned_to_inventory.interface';
@@ -8,7 +8,9 @@ import { ConsultArticleResponse } from 'src/app/interfaces/article/consult-artic
 import { ArticleService } from 'src/app/services/article/article.service';
 import * as arrayUtil from 'src/app/utils/array.util';
 import swal, { SweetAlertResult } from'sweetalert2';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ViewArticleAssignedToInventoryComponent } from './view-article-assigned-to-inventory/view-article-assigned-to-inventory.component';
+import { EditArticleAssignedToInventoryComponent } from './edit-article-assigned-to-inventory/edit-article-assigned-to-inventory.component';
 
 @Component({
   selector: 'app-selecting-articles',
@@ -16,6 +18,9 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./selecting-articles.component.scss']
 })
 export class SelectingArticlesComponent implements OnInit  {
+  @Input() articleList: ArticleAssignedToInventory;
+  @Output() selectionList = new EventEmitter<ArticleAssignedToInventory[]>();
+  @Output() back = new EventEmitter<boolean>();
   @ViewChild('articlesList') articlesList: MatSelectionList;
   articles: Article[] = [];
   addedArticles: ArticleAssignedToInventory [] = [];
@@ -45,7 +50,9 @@ export class SelectingArticlesComponent implements OnInit  {
     this.consultArticleForm = new FormGroup({
       atributteFormControl: new FormControl('', [Validators.required]),
       selectedAtributtesArticlesControl: new FormControl('', [Validators.required])
-    })
+    });
+
+    
   }
 
 
@@ -107,7 +114,7 @@ export class SelectingArticlesComponent implements OnInit  {
   }
 
   saveArticles(list:MatSelectionList){
-
+    this.selectionList.emit(this.addedArticles)
   }
 
   addAmount(e:MouseEvent, index:number){
@@ -149,9 +156,46 @@ export class SelectingArticlesComponent implements OnInit  {
     this.auxAddedArticles = this.addedArticles;
   }
 
+  viewArticleAssignedToInventory(artAsgToInv:ArticleAssignedToInventory, e:MouseEvent, index:number) {
 
-  stopPropagation(e:MouseEvent){
     e.stopPropagation();
+
+    const dialogRef: MatDialogRef<ViewArticleAssignedToInventoryComponent, ArticleAssignedToInventory> = this.matDialog.open(
+      ViewArticleAssignedToInventoryComponent,
+      {
+        data: artAsgToInv,
+        width: '80vw',
+        height: '90vh',
+        disableClose: true
+      },
+      
+    );
+
+    
+
+  }
+
+  editArticleAssignedToInventory(artAsgToInv:ArticleAssignedToInventory, e:MouseEvent, index:number) {
+
+    e.stopPropagation();
+    
+    const dialogRef: MatDialogRef<EditArticleAssignedToInventoryComponent, ArticleAssignedToInventory> = this.matDialog.open(
+      EditArticleAssignedToInventoryComponent,
+      {
+        data: artAsgToInv,
+        width: '80vw',
+        height: '80vh',
+        disableClose: true
+      },
+      
+    );
+
+    dialogRef.afterClosed().subscribe((response:ArticleAssignedToInventory) => this.addedArticles[index] = response)
+
+  }
+
+  backStepper() {
+    this.back.emit(true);
   }
 
 

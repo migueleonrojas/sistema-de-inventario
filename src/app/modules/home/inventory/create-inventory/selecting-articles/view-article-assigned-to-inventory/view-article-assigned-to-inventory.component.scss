@@ -1,0 +1,33 @@
+h1 {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.form-content form{ 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  align-content: stretch;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+
+}
+
+#form-content  mat-form-field{
+  flex: auto;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+textarea {
+  resize: none;
+}
+
+.button {
+  display: block;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1.5rem;
+}
