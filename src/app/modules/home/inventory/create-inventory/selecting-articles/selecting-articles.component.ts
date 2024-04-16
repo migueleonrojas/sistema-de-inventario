@@ -11,6 +11,9 @@ import swal, { SweetAlertResult } from'sweetalert2';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ViewArticleAssignedToInventoryComponent } from './view-article-assigned-to-inventory/view-article-assigned-to-inventory.component';
 import { EditArticleAssignedToInventoryComponent } from './edit-article-assigned-to-inventory/edit-article-assigned-to-inventory.component';
+import { InventoryService } from 'src/app/services/inventory/inventory.service';
+import { firstValueFrom } from 'rxjs';
+import { GetLastIDInvetoryResponse } from 'src/app/interfaces/inventory/get-last-id-invetory-response.interface';
 
 @Component({
   selector: 'app-selecting-articles',
@@ -42,7 +45,8 @@ export class SelectingArticlesComponent implements OnInit  {
   
   constructor(
     private articleService:ArticleService,
-    public matDialog: MatDialog
+    public matDialog: MatDialog,
+    private inventoryService: InventoryService
   ){}
 
 
@@ -70,15 +74,14 @@ export class SelectingArticlesComponent implements OnInit  {
     })
   }
 
-  addingArticles(list:MatSelectionList) {
+  async addingArticles(list:MatSelectionList) {
 
     if(this.auxAddedArticles.length === 0) {
       list.selectedOptions.selected.map<MatListOption>((item: MatListOption) => {
         
         this.addedArticles.push({
           id: item.value.id,
-          id_inventory: 1,
-          id_location: 1,
+        
           amount: 1,
           brand: item.value.brand,
           model: item.value.model,
@@ -95,8 +98,6 @@ export class SelectingArticlesComponent implements OnInit  {
         
         this.addedArticles.push({
           id: item.value.id,
-          id_inventory: 1,
-          id_location: 1,
           amount: 1,
           brand: item.value.brand,
           model: item.value.model,
@@ -114,18 +115,37 @@ export class SelectingArticlesComponent implements OnInit  {
   }
 
   saveArticles(list:MatSelectionList){
+
     this.selectionList.emit(this.addedArticles)
+  }
+
+  changeAmountListArticle(value:Event, index:number) {
+
+    let inputValue = value as InputEvent;
+    let valueAmount = (inputValue.target as HTMLInputElement).value;    
+
+    if(valueAmount === ''){
+      (inputValue.target as HTMLInputElement).value = String(1);
+      this.addedArticles[index].amount = 1;
+    }
+    
+    if(Number(valueAmount) > 99) {
+      (inputValue.target as HTMLInputElement).value = String(99);
+      this.addedArticles[index].amount = 99;
+    }
+
   }
 
   addAmount(e:MouseEvent, index:number){
     e.stopPropagation();
+    if(this.addedArticles[index].amount >= 99) return;
     this.addedArticles[index].amount += 1;
 
   }
 
   substractAmount(e:MouseEvent, index:number){
     e.stopPropagation();
-    if(this.addedArticles[index].amount === 1) return;
+    if(this.addedArticles[index].amount <= 1) return;
     this.addedArticles[index].amount -= 1;
   }
 

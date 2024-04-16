@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Inventory } from 'src/app/interfaces/inventory/inventory.interface';
 import { CreateInventoryResponse } from 'src/app/interfaces/inventory/create-inventory-response.interface';
 import { ConsultInventoryResponse } from 'src/app/interfaces/inventory/consult-inventory-response.interface';
+import { GetLastIDInvetoryResponse } from 'src/app/interfaces/inventory/get-last-id-invetory-response.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,10 @@ export class InventoryService {
 
   consultInventory(inventory: Inventory): Observable<ConsultInventoryResponse> {
     return this.httpClient.post<ConsultInventoryResponse>(`${environment.apiUrl}/consult-inventory`, inventory);
+  }
+
+  getLastIdInventory():Observable<GetLastIDInvetoryResponse> {
+    return this.httpClient.get<GetLastIDInvetoryResponse>(`${environment.apiUrl}/get-last-id-inventory-created`);
   }
 
 }

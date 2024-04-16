@@ -9,9 +9,9 @@ import { PathsWithoutModalNotification } from '../const/const';
 export class HttpResponseInterceptor implements HttpInterceptor {
    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>  {
 
-    let stringPattern: string = PathsWithoutModalNotification.length === 1 ? `/${PathsWithoutModalNotification[0]}`: `/${PathsWithoutModalNotification.join('|')}/`;
+    let stringPattern: string = PathsWithoutModalNotification.length === 1 ? `${PathsWithoutModalNotification[0]}`: `${PathsWithoutModalNotification.join('|')}`;
   
-    let regExp: RegExp = new RegExp(stringPattern,"g");
+    let regExp: RegExp = new RegExp(`${stringPattern}`,"g");
 
     return next.handle(request).pipe(
       catchError((err: HttpErrorResponse) => {

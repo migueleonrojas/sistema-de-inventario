@@ -1,3 +1,4 @@
 export const PathsWithoutModalNotification = [
-  'consult'
+  'consult',
+  'get'
 ];

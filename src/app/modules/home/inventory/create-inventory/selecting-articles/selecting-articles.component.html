@@ -73,7 +73,7 @@
                 <button mat-mini-fab color="primary" (click)="substractAmount($event, i)">
                   <mat-icon>remove</mat-icon>
                 </button>
-                <input class="amount" type="number" min="1" max="100" [(ngModel)]=addedArticle.amount>
+                <input class="amount" type="number" min="1" max="100" value=addedArticle.amount [(ngModel)]=addedArticle.amount (input)="changeAmountListArticle($event, i)">
                 <button mat-mini-fab color="primary" (click)="addAmount($event, i)">
                   <mat-icon>add</mat-icon>
                 </button>
@@ -101,8 +101,6 @@
       <ng-template #noResults>
         <p class="no-results">No ha seleccionado articulos aún.</p>
       </ng-template>
-
-
     </article>
   </ng-template>
   <ng-template #withoutConsultingYet>
